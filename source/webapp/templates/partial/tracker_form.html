@@ -1,0 +1,35 @@
+{% csrf_token %}
+{% load django_bootstrap5 %}
+{% bootstrap_form form %}
+<div class="form_row">
+    <label for="summary">Краткое описание</label>
+    <input type="text" id="summary" name="summary" value="{{ tracker.title }}">
+</div>
+<div class="form_row">
+    <label for="description">Text</label>
+    <textarea name="description" id="description" cols="30" rows="10">{{ tracker.description }}</textarea>
+</div>
+<div class="form_row">
+    <label for="custom_date">Статус</label>
+    <select id="status" name="status">
+        {% for choice in choices %}
+            {% if tracker.status == status.0 %}
+                <option value="{{ status.0 }}" selected>{{ status.1 }}</option>
+            {% else %}
+                <option value="{{ status.0 }}">{{ status.1 }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+</div>
+<div class="form_row">
+    <label for="custom_date">Тип</label>
+    <select id="type" name="type">
+        {% for types in type %}
+            {% if tracker.type == type.0 %}
+                <option value="{{ type.0 }}" selected>{{ type.1 }}</option>
+            {% else %}
+                <option value="{{ type.0 }}">{{ type.1 }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+</div>

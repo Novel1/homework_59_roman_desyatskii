@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1>Вы точно хотите удалить?</h1>
+        <div class="card " style="width: 18rem; margin: 20px">
+            <div class="card-body">
+                <h5 class="card-title">{{ tracker.summary }}</h5>
+                <p class="card-text">{{ tracker.description }}</p>
+                <p class="lead mb-4">{% for status in tracker.status.all %} {{ status.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                <p class="lead mb-4">{% for type in tracker.type.all %} {{ type.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                <p class="card-text">{{ tracker.created_at }}</p>
+            </div>
+             <form action="{% url 'confirm_delete' tracker.pk %}" method="post">
+            {% csrf_token %}
+            <div class="but" style="display: flex; margin-left: 10px">
+                <p><input type="submit" value="Удалить" style="width: 130px"></p>
+                <a href="{% url 'index' %}"><p><input type="button" value="Отмена" style="margin-left: 10px; width: 130px">
+                </p></a>
+            </div>
+        </form>
+        </div>
+    </div>
+{% endblock %}

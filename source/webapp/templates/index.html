@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block menu %}
+    <a href="{% url 'project_index' %}">
+        <button type="button" style="margin-left: 10px" class="btn btn-warning">Проект</button>
+    </a>
+{% endblock %}
+{% block content %}
+    {% include 'partial/search.html' %}
+    <div class="container">
+        <div class="card-group" style="padding: 10px; margin-top: 20px;">
+            <div class="row">
+                {% for track in tracker %}
+                    <div class="col-md-12">
+                        <div class="px-4 py-5 my-5 text-center">
+                            <h1 class="display-1 fw-bold" style="margin-left: 30px">{{ track.summary }}</h1>
+                            <div class="col-lg-6 mx-auto">
+                                <a href="{% url 'tracker_view' track.pk %}">
+                                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Подробнее...
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% if is_paginated %}
+                {% include 'partial/pagination.html' %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
