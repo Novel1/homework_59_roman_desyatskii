@@ -1,0 +1,22 @@
+{% extends 'base_project.html' %}
+{% block content %}
+<div class="container">
+        <div class="card-group" style="padding: 10px; margin-top: 20px;">
+            <div class="row">
+                {% for project in projects %}
+                    <div class="col-md-12">
+                        <div class="px-4 py-5 my-5 text-center">
+                            <h1 class="display-1 fw-bold">{{ project.name }}</h1>
+                            <div class="col-lg-6 mx-auto">
+                                <a href="{% url 'project_view' project.pk %}">
+                                    <button type="button"  class="btn btn-primary btn-lg px-4 gap-3">Подробнее...
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

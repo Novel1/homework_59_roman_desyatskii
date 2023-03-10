@@ -1,0 +1,36 @@
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_messages %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar bg-body-tertiary" style="padding: 0; margin: 0">
+    <div class="container-fluid" style="background-color: #DE483A;">
+       <h1>Project</h1>
+        <div class="btn-group" role="group" aria-label="Button" style="padding: 100px;">
+            <a href="{% url 'index' %}">
+                <button type="button" class="btn btn-warning">На главную</button>
+            </a>
+            <a href="{% url 'project_add' %}">
+                <button type="button" style="margin-left: 10px" class="btn btn-warning">Добавить проект</button>
+            </a>
+            {% block menu %}{% endblock %}
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
